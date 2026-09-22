@@ -1,6 +1,6 @@
 import {client} from '../config/redisClient'
 import {jobType } from '../types/types';
-import { updateJobStatus } from './job.services';
+import { updateJobStatus } from './job.service';
 import { QUEUE_NAMES } from '../config/queue.config';
 
 export const returnJob = async (shouldStop : () => boolean) => {

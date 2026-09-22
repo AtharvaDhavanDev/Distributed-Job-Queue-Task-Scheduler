@@ -1,5 +1,5 @@
 import {Request , Response} from 'express'
-import { addJob, cancelJob, getJobStatus } from '../services/job.services';
+import { addJob, cancelJob, getJobStatus } from '../services/job.service';
 import { jobInputJoi } from '../validators/jobInput.validator';
 import { createJobInput } from '../types/types';
 
