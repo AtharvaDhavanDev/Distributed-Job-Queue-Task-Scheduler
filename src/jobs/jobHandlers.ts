@@ -11,8 +11,8 @@ export const sendEmail = async(payload : {to : string, email : string, message :
     console.log("------------------------------------")
 
     await new Promise(resolve => setTimeout(resolve , 10000));
-    throw new Error("Worker failed !")
+    // throw new Error("Worker failed !")
 
 
-    // console.log('Email sent successfully ✅');
+    console.log('Email sent successfully ✅');
 }

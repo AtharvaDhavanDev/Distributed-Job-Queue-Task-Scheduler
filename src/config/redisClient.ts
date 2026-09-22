@@ -27,19 +27,6 @@ client.on('error', (error) => {
     console.error("Redis connection error:", error)
 })
 
-// process.on("SIGINT", async () => {
-//     console.log("SIGINT received — shutting down worker ⚠️");
-
-//     await client.quit();
-
-//     console.log("Redis Connection Closed ❌");
-//     process.exit(0);
-// });
-
-// process.on("SIGTERM", () => {
-//     console.log("SIGTERM received ⚠️");
-// });
-
 process.on("uncaughtException", (error) => {
     console.error("UNCAUGHT EXCEPTION:", error);
 });

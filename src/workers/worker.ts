@@ -1,17 +1,9 @@
 import { jobType } from "../types/types";
 
-import {
-  getMaxAttempts,
-  incrementJobAttempts,
-  scheduleRetry,
-  returnJob,
-  updateJobStatus,
-  moveToDLQ,
-  acknowledgeJob
-} from "../controllers/job.contro";
-
 import { sendEmail } from "../jobs/jobHandlers";
 import { client } from "../config/redisClient";
+import { acknowledgeJob, moveToDLQ, returnJob, scheduleRetry } from "../services/queue.service";
+import { getMaxAttempts, incrementJobAttempts, updateJobStatus } from "../services/job.services";
 
 const workerId = process.argv[2] || "worker-1";
 let isShuttingDown = false;
