@@ -3,7 +3,7 @@ import { client } from "../config/redisClient";
 const PROCESSING_QUEUE_NAME = "processing_queue";
 const QUEUE_NAME = "job_queue";
 
-const STALL_TIMEOUT = 20000; // 15 seconds
+const STALL_TIMEOUT = 20000; // 20 seconds
 
 const recoverStalledJobs = async () => {
 

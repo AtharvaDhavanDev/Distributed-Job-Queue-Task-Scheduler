@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "Distributed-Job-Queue-Task-Scheduler",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Redis-backed asynchronous job processing system with multiple workers, retries, scheduling, DLQ, cancellation, and failure recovery.",
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",

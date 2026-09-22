@@ -1,6 +1,7 @@
 import {Request , Response} from 'express'
 import { addJob, cancelJob, getJobStatus } from '../services/job.services';
 import { jobInputJoi } from '../validators/jobInput.validator';
+import { createJobInput } from '../types/types';
 
 
 export const handleCreateJob = async(req : Request , res : Response) => { //Producer
@@ -16,7 +17,7 @@ export const handleCreateJob = async(req : Request , res : Response) => { //Prod
             })
         }
 
-        const {type, payload , delay} = value;
+        const {type, payload , delay} = value as createJobInput;
         const jobId = crypto.randomUUID()
 
         await addJob({

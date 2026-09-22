@@ -1,5 +1,5 @@
 import express from 'express';
-import { handleCancelJob, handleCreateJob, handleGetJobStatus } from '../controllers/job.contro';
+import { handleCancelJob, handleCreateJob, handleGetJobStatus } from '../controllers/job.controller';
 const route = express.Router();
 
 route.post('/job' , handleCreateJob);
