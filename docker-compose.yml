@@ -1,0 +1,38 @@
+services:
+
+  api:
+    image: job-queue
+    env_file:
+      - .env
+    ports:
+      - "3001:3001"
+
+  worker-1:
+    image: job-queue
+    env_file:
+      - .env
+    command: node dist/workers/worker.js worker-1
+
+  worker-2:
+    image: job-queue
+    env_file:
+      - .env
+    command: node dist/workers/worker.js worker-2
+
+  retry-scheduler:
+    image: job-queue
+    env_file:
+      - .env
+    command: node dist/workers/retryScheduler.js
+
+  scheduled-job-scheduler:
+    image: job-queue
+    env_file:
+      - .env
+    command: node dist/workers/scheduledJobScheduler.js
+
+  stalled-job-recovery:
+    image: job-queue
+    env_file:
+      - .env
+    command: node dist/workers/stalledJobRecovery.js
