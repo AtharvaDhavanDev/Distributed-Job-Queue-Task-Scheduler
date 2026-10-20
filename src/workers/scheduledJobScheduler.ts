@@ -1,12 +1,11 @@
 import { client } from "../config/redisClient";
 
-const QUEUE_NAME = "job_queue";
-const SCHEDULED_QUEUE_NAME = "scheduled_queue";
+import {QUEUE_NAMES} from '../config/queue.config';
 
 const moveDueJobs = async () => {
 
     const jobs = await client.zrangebyscore(
-        SCHEDULED_QUEUE_NAME,
+        QUEUE_NAMES.SCHEDULED,
         "-inf",
         Date.now()
     );
@@ -14,14 +13,14 @@ const moveDueJobs = async () => {
     for (const serializedJob of jobs) {
 
         const removed = await client.zrem(
-            SCHEDULED_QUEUE_NAME,
+            QUEUE_NAMES.SCHEDULED,
             serializedJob
         );
 
         if (removed === 1) {
 
             await client.rpush(
-                QUEUE_NAME,
+                QUEUE_NAMES.MAIN,
                 serializedJob
             );
 

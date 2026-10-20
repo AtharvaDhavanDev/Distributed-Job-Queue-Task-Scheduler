@@ -5,10 +5,13 @@ import { QUEUE_NAMES } from '../config/queue.config';
 
 export const returnJob = async (shouldStop : () => boolean) => {
     while (!shouldStop()) {
-        const job = await client.rpoplpush(
+
+        const job = await client.lmove(
             QUEUE_NAMES.MAIN,
-            QUEUE_NAMES.PROCESSING
-        );
+            QUEUE_NAMES.PROCESSING,
+            "LEFT",
+            "RIGHT"
+        )
 
         if (job) {
             return job;

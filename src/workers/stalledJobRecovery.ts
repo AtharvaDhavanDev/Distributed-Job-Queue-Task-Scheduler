@@ -1,14 +1,13 @@
 import { client } from "../config/redisClient";
 
-const PROCESSING_QUEUE_NAME = "processing_queue";
-const QUEUE_NAME = "job_queue";
+import {QUEUE_NAMES} from '../config/queue.config';
 
 const STALL_TIMEOUT = 20000; // 20 seconds
 
 const recoverStalledJobs = async () => {
 
     const jobs = await client.lrange(
-        PROCESSING_QUEUE_NAME,
+        QUEUE_NAMES.PROCESSING,
         0,
         -1
     );
@@ -37,7 +36,7 @@ const recoverStalledJobs = async () => {
         );
 
         const removed = await client.lrem(
-            PROCESSING_QUEUE_NAME,
+            QUEUE_NAMES.PROCESSING,
             1,
             serializedJob
         );
@@ -45,7 +44,7 @@ const recoverStalledJobs = async () => {
         if (removed === 1) {
 
             await client.rpush(
-                QUEUE_NAME,
+                QUEUE_NAMES.MAIN,
                 serializedJob
             );
 
