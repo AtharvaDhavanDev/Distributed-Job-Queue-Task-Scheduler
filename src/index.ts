@@ -4,13 +4,11 @@ dotenv.config();
 import express from "express";
 const app = express();
 const port = process.env.PORT || 3001;
-import cookieParser from 'cookie-parser';
 import jobRoute from './routes/job.route'
 
 
 //middlewares
 app.use(express.json());
-app.use(cookieParser());
 
 //routes
 app.use('/api/v1' , jobRoute)
