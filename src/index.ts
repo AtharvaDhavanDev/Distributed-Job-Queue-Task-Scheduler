@@ -15,7 +15,6 @@ app.use(cookieParser());
 //routes
 app.use('/api/v1' , jobRoute)
 
-console.log("Changes are happening !")
 
 app.listen(port , () => {
     console.log(`Server is running on PORT : ${port}`)
